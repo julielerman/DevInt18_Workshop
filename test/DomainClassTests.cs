@@ -38,7 +38,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
             team.AddPlayer ("André", "Onana", out response);
-            Assert.Equal (1, team.Players.Count ());
+            Assert.Single (team.Players);
         }
 
         [Fact]
@@ -60,7 +60,7 @@ namespace test {
         public void CanSetHomeColorsWhenAwayColorsAreNotSet () {
             var team = CreateTeamAjax ();
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
+            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary.Name);
         }
 
         [Fact]
@@ -68,7 +68,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.SpecifyAwayUniformColors (Color.Blue, Color.Red, Color.Empty, Color.Blue, Color.Empty, Color.Blue, false);
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary);
+            Assert.Equal (Color.White.Name, team.HomeColors.ShirtPrimary.Name);
         }
 
         [Fact]
@@ -76,7 +76,7 @@ namespace test {
             var team = CreateTeamAjax ();
             team.SpecifyAwayUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
             var response = team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White, false);
-            Assert.Equal (response, false);
+            Assert.False (response);
         }
     }
 }
