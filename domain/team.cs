@@ -12,23 +12,19 @@ namespace Domain {
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
       Id = Guid.NewGuid ();
-      //newly created team starts out with empty players
-      //team retrieved from database including players will have instantiated Players,
-      //whereas from db without including players, Players will be null
       Players = new List<Player> ();
     }
     private Team () {
-      // Players=new List<Player>();
     }
     public Guid Id { get; private set; }
     public string TeamName { get; private set; }
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
-    public string HomeStadium { get; private set; } //encapsulate
+    public string HomeStadium { get; private set; } 
+ 
     public List<Player> Players { get; private set; }
     public bool AddPlayer (string firstName, string lastname, out string response) {
       if (Players == null) {
-        //this will need to be tested with integration test
         response = "You must first retrieve this team's existing list of players";
         return false;
       }
@@ -45,7 +41,6 @@ namespace Domain {
     }
 
     public Manager Manager { get; private set; }
-    public UniformColors HomeColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
       {
         if (Manager != null) {
@@ -56,9 +51,11 @@ namespace Domain {
         Manager = newManager;
       }
     }
-    public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
+
+     public UniformColors HomeColors { get; private set; }
+     public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
       HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-       }
+    }
   
   }
 }
