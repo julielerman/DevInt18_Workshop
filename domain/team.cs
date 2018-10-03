@@ -24,21 +24,17 @@ namespace Domain {
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; }
 
-    ///Encapsulate Players collection
-    //public List<Player> Players { get; private set; }
-    public IEnumerable<Player> Players => _players.ToList ();
-
-    private ICollection<Player> _players;
+    public List<Player> Players { get; private set; }
     public bool AddPlayer (string firstName, string lastname, out string response) {
-      if (_players == null) {
+      if (Players == null) {
         //this will need to be tested with integration test
         response = "You must first retrieve this team's existing list of players";
         return false;
       }
       var fullName = PersonFullName.Create (firstName, lastname).FullName;
-      var foundPlayer = _players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
+      var foundPlayer = Players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
       if (foundPlayer == null) {
-        _players.Add (new Player (firstName, lastname));
+        Players.Add (new Player (firstName, lastname));
         response = "Player added to team";
         return true;
       } else {
