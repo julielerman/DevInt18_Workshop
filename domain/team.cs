@@ -13,7 +13,7 @@ namespace Domain {
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
       Id = Guid.NewGuid ();
-      _players = new List<Player> ();
+      Players = new List<Player> ();
     }
     public Guid Id { get; private set; }
 
