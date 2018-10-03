@@ -1,6 +1,5 @@
-﻿using Microsoft.EntityFrameworkCore.Migrations;
-using System;
-using System.Collections.Generic;
+﻿using System;
+using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace data.Migrations
 {
@@ -25,11 +24,11 @@ namespace data.Migrations
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
-                    HomeStadium = table.Column<string>(nullable: true),
-                    ManagerId = table.Column<Guid>(nullable: true),
-                    Nickname = table.Column<string>(nullable: true),
                     TeamName = table.Column<string>(nullable: true),
-                    YearFounded = table.Column<string>(nullable: true)
+                    Nickname = table.Column<string>(nullable: true),
+                    YearFounded = table.Column<string>(nullable: true),
+                    HomeStadium = table.Column<string>(nullable: true),
+                    ManagerId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>
                 {
