@@ -8,9 +8,7 @@ namespace Domain {
   public class Team {
       //private Team(){ } //<==no longer needed in 2.1 yay
       public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
-      //TeamName = teamName;
-      _teamname=teamName;
-      
+      TeamName = teamName;      
       Nickname = nickname;
       YearFounded = yearFounded;
       HomeStadium = homeStadium;
@@ -18,15 +16,7 @@ namespace Domain {
       Players = new List<Player> ();
     }
     public Guid Id { get; private set; }
-    
-    //changed team name so it can only be set
-    //in constructor and never edited
-    //uses backing field  _teamname
-    
-    //public string TeamName { get; private set; }
-    private string _teamname;
-    public string TeamName => _teamname;
-                          //{ get; private set; }   
+    public string TeamName { get; private set; } 
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
     public string HomeStadium { get; private set; } 
