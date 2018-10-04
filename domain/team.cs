@@ -7,7 +7,9 @@ using SharedKernel;
 namespace Domain {
   public class Team {
     private Team(){}
-    
+    //note: don't want _players to get instantiated during
+      //materialization so we need the parameterless ctor
+      //to be used by EF Core
     public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
       _teamname = teamName;
       Nickname = nickname;
