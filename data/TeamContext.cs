@@ -26,9 +26,6 @@ namespace Data {
                 .Property (b => b.TeamName)
                 .HasField ("_teamname");
 
-            var navigation = modelBuilder.Entity<Team> ()
-                .Metadata.FindNavigation (nameof (Team.Players));
-            navigation.SetPropertyAccessMode (PropertyAccessMode.Field);
-        }
+           }
     }
 }

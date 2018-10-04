@@ -6,7 +6,6 @@ using SharedKernel;
 
 namespace Domain {
   public class Team {
-    private Team () { }
     public Team (string teamName, string nickname, string yearFounded, string homeStadium) {
       _teamname = teamName;
       Nickname = nickname;
