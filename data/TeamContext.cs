@@ -20,8 +20,7 @@ namespace Data {
             // modelBuilder.Ignore<ManagerTeamHistory>();
             modelBuilder.Entity<ManagerTeamHistory> ().HasKey (m => new { m.ManagerId, m.TeamId });
             modelBuilder.Ignore<UniformColors> ();
-            // modelBuilder.Ignore<PersonFullName>();
-            modelBuilder.Entity<Team> ()
+             modelBuilder.Entity<Team> ()
                 .Property (b => b.TeamName)
                 .HasField ("_teamname");
 
