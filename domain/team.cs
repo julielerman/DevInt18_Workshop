@@ -46,23 +46,15 @@ namespace Domain {
       }
     }
 
-    private Manager Manager =>_manager ;//{get;set;}
-    private Manager _manager;
-    public string ManagerName=>_manager.Name;
-
+    private Manager Manager {get;set;}
      public UniformColors HomeColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
-        if (_manager is null || _manager.Name != newManager.Name) {
-          // Manager.PastTeams.Add (new ManagerTeamHistory(Manager.Id,Id));
-          //Manager.CurrentTeamId=Guid.Empty();
-          _manager?.RemoveFromTeam(Id);
+        if (Manager is null || Manager.Name != newManager.Name) {
+           Manager?.RemoveFromTeam(Id);
           newManager.BecameTeamManager (Id);
-          _manager = newManager;
+          Manager = newManager;
        
         }
-      // newManager.BecameTeamManager(Id);
-      // Manager = newManager;
-  //   }
    }
   public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
     HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
