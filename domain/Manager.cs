@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using SharedKernel;
 namespace Domain {
   public class Manager {
+    private Manager(){ }
     public Manager (string firstname, string lastname) {
       NameFactory = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
