@@ -3,12 +3,9 @@ using System.Collections.Generic;
 using SharedKernel;
 namespace Domain {
   public class Manager {
-    public Manager (string firstname, string lastname) : this () {
+    public Manager (string firstname, string lastname) {
       NameFactory = PersonFullName.Create (firstname, lastname);
       Id = Guid.NewGuid ();
-    }
-    private Manager () {
-      PastTeams = new List<ManagerTeamHistory> ();
     }
     public Guid Id { get; set; }
     public PersonFullName NameFactory { get; private set; }
