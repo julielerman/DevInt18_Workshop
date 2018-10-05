@@ -116,7 +116,7 @@ namespace test {
 
         }
 
-#if true
+#if false
         [Fact]
         public void CanStoreAndRetrieveTeamManager () {
             var team = CreateTeamAjax ();
