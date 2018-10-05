@@ -114,7 +114,7 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext ()) {
-                 var storedTeam = context.Teams.Include ( "Manager").FirstOrDefault ();
+                 var storedTeam = context.Teams.Include (t=>t.Manager).FirstOrDefault ();
                 Assert.Equal (firstmanager.Name, storedTeam.Manager.Name);
               }
         }
