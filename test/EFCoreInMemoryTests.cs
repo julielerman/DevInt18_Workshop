@@ -129,10 +129,9 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext (options)) {
-                var storedTeam = context.Teams.Include ("Manager").Include ("Manager.NameFactory").FirstOrDefault ();
-                Assert.Equal (firstmanager.Name, storedTeam.ManagerName);
-                var storedManager = context.Teams.Select (t => EF.Property<Manager> (t, "Manager")).FirstOrDefault ();
-                Assert.Equal (storedTeam.Id, storedManager.CurrentTeamId);
+                var storedTeam = context.Teams.Include(t=>t.Manager).FirstOrDefault ();
+                Assert.Equal (firstmanager.Name, storedTeam.Manager.Name);
+                Assert.Equal (storedTeam.Id, storedTeam.Manager.CurrentTeamId);       
             }
         }
 #endif

@@ -20,11 +20,10 @@ namespace Domain {
     }
     public Guid Id { get; private set; }
     private string _teamname;
-    public string TeamName =>_teamname;
-
+    public string TeamName => _teamname;
     public string Nickname { get; private set; }
     public string YearFounded { get; private set; }
-    public string HomeStadium { get; private set; } 
+    public string HomeStadium { get; private set; }
     public IEnumerable<Player> Players => _players.ToList ();
 
     private ICollection<Player> _players;
@@ -46,20 +45,19 @@ namespace Domain {
       }
     }
 
-    private Manager Manager {get;set;}
-     public UniformColors HomeColors { get; private set; }
+    public Manager Manager { get; set; }
+    public UniformColors HomeColors { get; private set; }
     public void ChangeManagement (Manager newManager) {
-        if (Manager is null || Manager.Name != newManager.Name) {
-           Manager?.RemoveFromTeam(Id);
-          newManager.BecameTeamManager (Id);
-          Manager = newManager;
-       
-        }
-   }
-  public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
-    HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
-    
+      if (Manager is null || Manager.Name != newManager.Name) {
+        Manager?.RemoveFromTeam (Id);
+        newManager.BecameTeamManager (Id);
+        Manager = newManager;
+      }
+    }
+    public void SpecifyHomeUniformColors (Color shirt1, Color shirt2, Color shirt3, Color shorts1, Color shorts2, Color socks) {
+      HomeColors = new UniformColors (shirt1, shirt2, shirt3, shorts1, shorts2, socks);
+
+    }
+
   }
- 
-}
 }

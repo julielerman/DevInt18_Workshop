@@ -17,8 +17,9 @@ namespace Data {
             }
         }
         protected override void OnModelCreating (ModelBuilder modelBuilder) {
-            modelBuilder.Entity<ManagerTeamHistory> ().HasKey (m => new { m.ManagerId, m.TeamId });
             modelBuilder.Ignore<UniformColors> ();
+
+            modelBuilder.Entity<ManagerTeamHistory> ().HasKey (m => new { m.ManagerId, m.TeamId });
             modelBuilder.Entity<Team> ()
                 .Property (b => b.TeamName)
                 .HasField ("_teamname");
@@ -29,10 +30,6 @@ namespace Data {
 
             modelBuilder.Entity<Player> ().OwnsOne (p => p.NameFactory);
             modelBuilder.Entity<Manager> ().OwnsOne (p => p.NameFactory);
-            modelBuilder.Entity<Team> ()
-                .HasOne (typeof (Manager), "Manager").WithOne ()
-                .HasForeignKey (typeof (Manager), "CurrentTeamId");
-
         }
     }
 }
