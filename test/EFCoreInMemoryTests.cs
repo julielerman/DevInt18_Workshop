@@ -129,9 +129,8 @@ namespace test {
                 context.SaveChanges ();
             }
             using (var context = new TeamContext (options)) {
-                var storedTeam = context.Teams.Include(t=>t.Manager).FirstOrDefault ();
+                var storedTeam = context.Teams.Include (t => t.Manager).FirstOrDefault ();
                 Assert.Equal (firstmanager.Name, storedTeam.Manager.Name);
-                Assert.Equal (storedTeam.Id, storedTeam.Manager.CurrentTeamId);       
             }
         }
 #endif
