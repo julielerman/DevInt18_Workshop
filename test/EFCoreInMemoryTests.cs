@@ -98,27 +98,32 @@ namespace test {
         }
 
            [Fact]
-         public void CanStoreAndRetrieveManagerTeamHistory()
-         {
+          public void CanStoreAndRetrieveManagerTeamHistory () {
+            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("CanStoreAndRetrieveManagerTeamHistory").Options;
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", out string response);
-            var firstmanager=new Manager ("Marcel", "Keizer");
+            var firstmanager = new Manager ("Marcel", "Keizer");
             team.ChangeManagement (firstmanager);
-             team.ChangeManagement (new Manager ("Erik", "ten Hag"));
-              
-            var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storemanagerhistory").Options;
+            var secondmanager = new Manager ("Erik", "ten Hag");
+            team.ChangeManagement (secondmanager);
+            team.ChangeManagement (new Manager ("Christian", "Weyer"));
+
             using (var context = new TeamContext (options)) {
-                context.AddRange (team,firstmanager);
+                context.Database.EnsureDeleted ();
+                context.Database.EnsureCreated ();
+                context.AddRange (team, firstmanager, secondmanager);
                 context.SaveChanges ();
             }
-             using (var context = new TeamContext (options)) {
-                     var M1=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="Keizer");
-                 var M2=context.Managers.Include(m=>m.PastTeams).FirstOrDefault(m=>m.NameFactory.Last=="ten Hag");
-                 Assert.Equal(new{M1="Marcel Keizer",M1Count=1,M2="Erik ten Hag",M2Count=0},
-                  new{M1=M1.Name, M1Count=M1.PastTeams.Count, M2=M2.Name, M2Count=M2.PastTeams.Count} );
+            using (var context = new TeamContext (options)) {
+                var managers = context.Managers.Include (m => m.PastTeams).ToList ();
+                Assert.Equal (3, managers.Count);
+                foreach (var manager in managers) {
+                    //will display when debugging
+                    Console.WriteLine ($"{manager.Name}: {manager.PastTeams.Count} Past Teams");
+                }
             }
 
-         }
+        }
         
 
     }
