@@ -31,6 +31,7 @@ namespace test {
                 Assert.Equal (Color.Blue, storedTeam.HomeColors.ShirtPrimary);
             }
         }
+         [Fact]
          public void CanStoreAndPlayerPosition () {
             var team = CreateTeamAjax ();
             team.AddPlayer ("André", "Onana", PlayerPosition.Goalie, out string response);
