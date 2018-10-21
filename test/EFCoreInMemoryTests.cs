@@ -18,11 +18,17 @@ namespace test {
         public void CanStoreAndRetrieveHomeColors () {
             var team = CreateTeamAjax ();
             team.SpecifyHomeUniformColors (Color.White, Color.Red, Color.Empty, Color.White, Color.Empty, Color.White);
-             var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("storemanagerhistory").Options;
+             var options = new DbContextOptionsBuilder<TeamContext> ().UseInMemoryDatabase ("onandonly").Options;
          
         using (var context = new TeamContext (options)) {
                 context.Teams.Add (team);
                 context.SaveChanges ();
+            }
+            using (var context = new TeamContext(options))
+            {
+                var storedTeam = context.Teams.Include(t => t.HomeColors).FirstOrDefault();
+
+                Assert.Equal(Color.Blue, storedTeam.HomeColors.ShirtPrimary);
             }
         }
     }
