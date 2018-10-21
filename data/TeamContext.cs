@@ -2,6 +2,7 @@
 using System.Drawing;
 using Domain;
 using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SharedKernel;
 
 namespace Data
@@ -52,11 +53,13 @@ namespace Data
             .Property(u=>u.ShortsSecondary).HasConversion(c=>c.Name,s=>Color.FromName(s));
  modelBuilder.Entity<UniformColors>()
             .Property(u=>u.Socks).HasConversion(c=>c.Name,s=>Color.FromName(s));
-
+modelBuilder.Entity<Player>().Property(p=>p.Position).HasConversion(new EnumToStringConverter<PlayerPosition>());
 //from the docs: 
 //There is currently no way to specify in one place that every property
 // of a given type must use the same value converter.
 //This feature will be considered for a future release.
         }
+
+       
     }
 }
