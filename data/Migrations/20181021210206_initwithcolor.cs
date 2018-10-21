@@ -74,6 +74,7 @@ namespace data.Migrations
                     Id = table.Column<Guid>(nullable: false),
                     NameFactory_First = table.Column<string>(nullable: true),
                     NameFactory_Last = table.Column<string>(nullable: true),
+                    Position = table.Column<int>(nullable: false),
                     TeamId = table.Column<Guid>(nullable: true)
                 },
                 constraints: table =>

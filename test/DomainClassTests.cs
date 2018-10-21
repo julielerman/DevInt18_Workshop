@@ -20,7 +20,7 @@ namespace test {
         [Fact]
         public void TeamAllowsNewPlayer () {
             var team = CreateTeamAjax ();
-            var playerWasAdded = team.AddPlayer ("André", "Onana", out string response);
+            var playerWasAdded = team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out string response);
             Assert.Equal ("André Onana", team.Players.First ().Name);
 
         }
@@ -28,24 +28,24 @@ namespace test {
         [Fact]
         public void TeamAllowsMultiplePlayers () {
             var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
-            team.AddPlayer ("Matthijs", "de Ligt", out response);
+            team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out string response);
+            team.AddPlayer ("Matthijs", "de Ligt", PlayerPosition.Forward, out response);
             Assert.Equal (2, team.Players.Count ());
         }
 
         [Fact]
         public void TeamPreventsDuplicatePlayer () {
             var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
-            team.AddPlayer ("André", "Onana", out response);
+            team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out string response);
+            team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out response);
             Assert.Single (team.Players);
         }
 
         [Fact]
         public void TeamReturnsDuplicateMessageForDuplicatePlayer () {
             var team = CreateTeamAjax ();
-            team.AddPlayer ("André", "Onana", out string response);
-            team.AddPlayer ("André", "Onana", out response);
+            team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out string response);
+            team.AddPlayer ("André", "Onana", PlayerPosition.Forward, out response);
             Assert.Equal ("Duplicate player", response);
         }
 

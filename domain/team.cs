@@ -37,7 +37,7 @@ namespace Domain {
     public IEnumerable<Player> Players => _players.ToList ();
 
     private ICollection<Player> _players;
-    public bool AddPlayer (string firstName, string lastname, out string response) {
+    public bool AddPlayer (string firstName, string lastname, PlayerPosition position, out string response) {
       if (_players == null) {
         //this will need to be tested with integration test
         response = "You must first retrieve this team's existing list of players";
@@ -46,7 +46,7 @@ namespace Domain {
       var fullName = PersonFullName.Create (firstName, lastname).FullName;
       var foundPlayer = _players.Where (p => p.Name.Equals (fullName)).FirstOrDefault ();
       if (foundPlayer == null) {
-        _players.Add (new Player (firstName, lastname));
+        _players.Add (new Player (firstName, lastname,position));
         response = "Player added to team";
         return true;
       } else {

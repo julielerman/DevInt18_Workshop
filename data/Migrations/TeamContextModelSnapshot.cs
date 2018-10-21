@@ -97,6 +97,8 @@ namespace data.Migrations
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
 
+                    b.Property<int>("Position");
+
                     b.Property<Guid?>("TeamId");
 
                     b.HasKey("Id");

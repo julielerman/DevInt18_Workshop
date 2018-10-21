@@ -9,7 +9,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace data.Migrations
 {
     [DbContext(typeof(TeamContext))]
-    [Migration("20181021204522_initwithcolor")]
+    [Migration("20181021210206_initwithcolor")]
     partial class initwithcolor
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -98,6 +98,8 @@ namespace data.Migrations
                 {
                     b.Property<Guid>("Id")
                         .ValueGeneratedOnAdd();
+
+                    b.Property<int>("Position");
 
                     b.Property<Guid?>("TeamId");
 
