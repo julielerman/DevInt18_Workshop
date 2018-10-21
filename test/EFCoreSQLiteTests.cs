@@ -31,6 +31,23 @@ namespace test {
                 Assert.Equal (Color.Blue, storedTeam.HomeColors.ShirtPrimary);
             }
         }
+        [Fact]
+        public void CanStoreAndPlayerPosition () {
+            var team = CreateTeamAjax ();
+            team.AddPlayer ("André", "Onana", PlayerPosition.Goalie, out string response);
+
+            using (var context = new TeamContext ()) {
+                context.Database.EnsureDeleted ();
+                context.Database.EnsureCreated ();
+                context.Teams.Add (team);
+                context.SaveChanges ();
+            }
+            using (var context = new TeamContext ()) {
+                var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
+                var storedPlayer = storedTeam.Players.FirstOrDefault ();
+                Assert.Equal (storedPlayer.Position, PlayerPosition.Goalie);
+            }
+        }
 
     }
 }
