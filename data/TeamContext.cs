@@ -55,7 +55,7 @@ namespace Data
 
 //from the docs: 
 //There is currently no way to specify in one place that every property
-//of a given type must use the same value converter.
+// of a given type must use the same value converter.
 //This feature will be considered for a future release.
         }
     }
