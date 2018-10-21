@@ -33,12 +33,6 @@ namespace test
                 context.SaveChanges();
             }
         
-            using (var context = new TeamContext())
-            {
-                var storedTeam = context.Teams.Include(t => t.HomeColors).FirstOrDefault();
-
-                Assert.Equal(Color.Blue, storedTeam.HomeColors.ShirtPrimary);
-            }
         }
 
     }
