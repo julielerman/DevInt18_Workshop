@@ -45,7 +45,7 @@ namespace test {
             using (var context = new TeamContext ()) {
                 var storedTeam = context.Teams.Include (t => t.Players).FirstOrDefault ();
                 var storedPlayer = storedTeam.Players.FirstOrDefault ();
-                Assert.Equal (storedPlayer.Position, PlayerPosition.Goalie);
+                Assert.Equal (PlayerPosition.Goalie,storedPlayer.Position);
             }
         }
 
